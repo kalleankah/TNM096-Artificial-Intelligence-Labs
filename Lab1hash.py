@@ -2,15 +2,12 @@ import numpy as np
 from random import randrange
 import heapq
 import time
-import hashlib
 
 goalMatrix = np.reshape(np.array([1,2,3,4,5,6,7,8,0]), (3,3))
 goalMatrixIndices = [[2,2], [0,0], [0,1], [0,2], [1,0], [1,1], [1,2], [2,0], [2,1]]
 
 unvisited = []
-visited = []
-visited_len = 0
-visited_hash = {}
+visiteddict = {}
 
 easy = np.reshape(np.array([4, 1, 3, 7, 2, 6, 0, 5, 8]), (3,3))     ##### easy with 6 moves
 medium = np.reshape(np.array([7, 2, 4, 5, 0, 6, 8, 3, 1]), (3,3))     ##### medium 20 moves
@@ -23,7 +20,6 @@ class node:
         self.hval = h1(self.mat)
         self.level = level
         self.fval = self.hval + self.level
-        # self.unique = np.asarray(self.mat).reshape(-1)
         self.unique = self.mat[2][2] + self.mat[2][1]*10 + self.mat[2][0]*100 + self.mat[1][2]*1000 + self.mat[1][1]*10000 + self.mat[1][0]*100000 + self.mat[0][2]*1000000 + self.mat[0][1]*10000000 + self.mat[0][0]*100000000
     
     # Returns an array of coordinates of the movable squares
@@ -53,13 +49,8 @@ def legal_move(move):
 
 # Traversing the list backwards is more efficient
 def never_visited(node):
-    i = visited_len - 1
-    while i >= 0:
-        # if node.hval == visited[i].hval and mat_equal(node, visited[i]):
-        # if mat_equal(node, visited[i]):
-        if node.unique == visited[i].unique:
-            return False
-        i = i - 1
+    if node.unique in visiteddict:
+        return False
     return True
 
 def make_move(mat,move):
@@ -88,12 +79,13 @@ def h2(curr_mat):
 
 # Main function
 # Prepare initial state
-startMatrix = medium
+startMatrix = hard2
 initailBoard = node(startMatrix, 0)
 heapq.heappush(unvisited, initailBoard)
 
 print("Start matrix: ")
 print(startMatrix)
+
 
 #Loop
 tic = time.time()
@@ -112,8 +104,4 @@ while(True):
         heapq.heappush(unvisited, newBoard)
 
     #Move current node from unvisited to visited list
-    visited.append(current)
-    visited_len = visited_len + 1
-    # visited_hash[current.unique] = current
-
-    # print(current.unique)
+    visiteddict[current.unique] = current
