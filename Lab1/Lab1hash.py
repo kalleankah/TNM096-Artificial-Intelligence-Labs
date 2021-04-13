@@ -62,7 +62,14 @@ def make_move(mat,move):
 
 # h1: Count number of misplaced tiles
 def h1(curr_mat):
-    distance = np.sum(curr_mat != goalMatrix)
+    distance = 0
+
+    for row in range(3):
+        for col in range(3):
+            if curr_mat[row][col] != goalMatrix[row][col] and curr_mat[row][col] != 0:
+                distance += 1
+
+    #distance = np.sum(curr_mat != goalMatrix)
 
     return distance
 
@@ -72,9 +79,10 @@ def h2(curr_mat):
     distance = 0
     for row in range(3):
         for col in range(3):
-            i = curr_mat[row][col]
-            goalpos = goalMatrixIndices[i]
-            distance += abs(row - goalpos[0]) +  abs(col - goalpos[1])
+            if curr_mat[row][col] != 0:
+                i = curr_mat[row][col]
+                goalpos = goalMatrixIndices[i]
+                distance += abs(row - goalpos[0]) +  abs(col - goalpos[1])
     return distance
 
 # Main function

@@ -1,0 +1,8 @@
+1. Are h1 and h2 admissible?
+    Yes. Neither h1 or h2 overestimates the cost h(s) compared to the actual cost g(s).
+2. Which heuristic among h1 and h2 performs better, and why?
+    h2 performs better because it provides more accurate information about the distance to the solution.
+3. Which of the heuristics h3, h4, and h5 are admissible?
+    -h3: Is admissible since h1 is always <= h2. If h1 = h2 then h3 = (h2 + h2)/2 = h2 which is admissible
+    -h4: Is not admissible. E.g. if one tile is misplaced the result of h4 is 2.
+    -h5: Is admissible since it takes the max value of two admissible heuristics
