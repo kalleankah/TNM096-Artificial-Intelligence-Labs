@@ -1,17 +1,34 @@
-1. Easy puzzle
+1. A)
+    Easy puzzle
     a) 02:01 DFGS - Failed
     b) 00:40 Backtracking search - Success
     c) 00:00.03 AC3 - Success
     d) 01:17.8 min conflicts - Success
 
     Harder puzzle
-    a) didnt check since fail on both time and result
+    a) TOO SLOW
     b) TOO SLOW Backtracking 
-    c) AC3
-    d) min_conflicts
+    c) FAILED instantly AC3
+    d) FAILED after 1 minute min_conflicts
 
     Hardest puzzle
-    a) no check
-    b)
-    c)
-    d)
+    a) TOO SLOW
+    b) TOO SLOW
+    c) FAILED instantly
+    d) FAILED 1 min
+   B)
+    Easy Puzzle
+        BT = 00:40 Success
+        BT+MRV = TOO SLOW
+        BT+FC = 00:00.02 Success
+        BT+FC+MRV = 00:00.02 Success
+    Harder Puzzle
+        BT = 
+        BT+MRV = 
+        BT+FC = 
+        BT+FC+MRV = 
+    Hardest Puzzle
+        BT = 
+        BT+MRV = 
+        BT+FC = 
+        BT+FC+MRV = 
