@@ -17,7 +17,7 @@ hard2 = np.reshape(np.array([8, 6, 7, 2, 5, 4, 3, 0, 1]), (3,3))     ##### diffi
 class node:
     def __init__(self, mat, level):
         self.mat = mat
-        self.hval = h1(self.mat)
+        self.hval = h2(self.mat)
         self.level = level
         self.fval = self.hval + self.level
         self.unique = self.mat[2][2] + self.mat[2][1]*10 + self.mat[2][0]*100 + self.mat[1][2]*1000 + self.mat[1][1]*10000 + self.mat[1][0]*100000 + self.mat[0][2]*1000000 + self.mat[0][1]*10000000 + self.mat[0][0]*100000000
