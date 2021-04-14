@@ -1,4 +1,4 @@
-1. A)
+1.  A)
     Easy puzzle
     a) 02:01 DFGS - Failed
     b) 00:40 Backtracking search - Success
@@ -7,7 +7,7 @@
 
     Harder puzzle
     a) TOO SLOW
-    b) TOO SLOW Backtracking 
+    b) TOO SLOW Backtracking
     c) FAILED instantly AC3
     d) FAILED after 1 minute min_conflicts
 
@@ -23,12 +23,22 @@
         BT+FC = 00:00.02 Success
         BT+FC+MRV = 00:00.02 Success
     Harder Puzzle
-        BT = 
-        BT+MRV = 
-        BT+FC = 
-        BT+FC+MRV = 
+        BT = TOO SLOW
+        BT+MRV = TOO SLOW
+        BT+FC = 01:21 Success
+        BT+FC+MRV = 00:00.03 Success
     Hardest Puzzle
-        BT = 
-        BT+MRV = 
-        BT+FC = 
-        BT+FC+MRV = 
+        BT = TOO SLOW
+        BT+MRV = TOO SLOW
+        BT+FC = 01:16 Success
+        BT+FC+MRV = 00:00.02 Success
+ANSWER:
+1.
+    DFGS does not check if assignments are legal and simply checks all combinations, there are way too many combinations, and not enough memory to store the tree.
+    AC3 should work since it, we're not sure why it fails. Does the order matter?
+    min_conflicts generates too many conflicted numbers in the harder sudoku boards, and it can not correct it in the given number of steps.
+    BT is a more efficient version of DFGS. It only generates nodes that don't violate the constaints. Furthermore, if no legal child-nodes can be produced, the parent assignment is removed from the board state. It has a lower average branching factor.
+    In conclusion, there is no obvious winner, AC3 is the fastest but fails on the harder puzzles. BT is much slower but might be able to solve the harder puzzles given enough time.
+2.
+    Backtracking with FC and selecting the next unassigned variable using MRV performs the best.
+    
