@@ -1,21 +1,22 @@
-1.  A)
+Task1
+  A)
     Easy puzzle
-    a) 02:01 DFGS - Failed
-    b) 00:40 Backtracking search - Success
-    c) 00:00.03 AC3 - Success
-    d) 01:17.8 min conflicts - Success
+    DFGS: 02:01 - Failed
+    BT: 00:40  - Success
+    AC3: 00:00.03 - Success
+    min_conflicts: 01:17.8 - Success
 
     Harder puzzle
-    a) TOO SLOW
-    b) TOO SLOW Backtracking
-    c) FAILED instantly AC3
-    d) FAILED after 1 minute min_conflicts
+    DFGS: TOO SLOW
+    BT: TOO SLOW
+    AC3: FAILED instantly
+    min_conflicts: FAILED after 1 minute
 
     Hardest puzzle
-    a) TOO SLOW
-    b) TOO SLOW
-    c) FAILED instantly
-    d) FAILED 1 min
+    DFGS: TOO SLOW
+    BT: TOO SLOW
+    AC3: FAILED instantly
+    min_conflicts: FAILED 1 min
    B)
     Easy Puzzle
         BT = 00:40 Success
@@ -40,5 +41,15 @@ ANSWER:
     BT is a more efficient version of DFGS. It only generates nodes that don't violate the constaints. Furthermore, if no legal child-nodes can be produced, the parent assignment is removed from the board state. It has a lower average branching factor.
     In conclusion, there is no obvious winner, AC3 is the fastest but fails on the harder puzzles. BT is much slower but might be able to solve the harder puzzles given enough time.
 2.
-    Backtracking with FC and selecting the next unassigned variable using MRV performs the best.
+    BT with FC and selecting the next unassigned variable using MRV performs the best.
+
+Task2:
+a) DFTS and BT become very slow around n=30. AC3 always fails. min_conflicts can solve n>1000 in just a few seconds given enough steps.
+b) From table in TNM096 Lab2 N-Queens BT+MRV+FC is the fastest and works best
+c) To solve all puzzles up to n=30, a few hundred steps are enough.
+d) How are we supposed to answer this question? Specifically?
+    - State-based solvers iterate through many possible solutions and sort unvisited potential solutions intelligently by some metric (e.g manhattan distance).
+    - CSP solvers utilize defined constraints to avoid paths that can't lead to a solution.
     
+    GLÖM EJ SKICKA MED EXCEL NÄR VI LÄMNAR IN
+    https://docs.google.com/spreadsheets/d/1-1yhIVNnvja8yqtOQdbk4C01CidZxNnHUFFzzfDOIIs/edit?usp=sharing

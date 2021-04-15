@@ -248,8 +248,8 @@ def mac(csp, var, value, assignment, removals):
 
 
 def backtracking_search(csp,
-                        select_unassigned_variable=first_unassigned_variable,
-                        # select_unassigned_variable=mrv,
+                        # select_unassigned_variable=first_unassigned_variable,
+                        select_unassigned_variable=mrv,
                         order_domain_values=unordered_domain_values,
                         # inference=forward_checking):
                         inference=no_inference):
@@ -279,7 +279,7 @@ def backtracking_search(csp,
 # Min-conflicts hillclimbing search for CSPs
 
 
-def min_conflicts(csp, max_steps=100000):
+def min_conflicts(csp, max_steps=300):
     """Solve a CSP by stochastic hillclimbing on the number of conflicts."""
     # Generate a complete assignment for all variables (probably with conflicts)
     csp.current = current = {}

@@ -87,7 +87,7 @@ def h2(curr_mat):
 
 # Main function
 # Prepare initial state
-startMatrix = hard2
+startMatrix = hard1
 initailBoard = node(startMatrix, 0)
 heapq.heappush(unvisited, initailBoard)
 
