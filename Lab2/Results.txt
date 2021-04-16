@@ -50,6 +50,9 @@ c) To solve all puzzles up to n=30, a few hundred steps are enough.
 d) How are we supposed to answer this question? Specifically?
     - State-based solvers iterate through many possible solutions and sort unvisited potential solutions intelligently by some metric (e.g manhattan distance).
     - CSP solvers utilize defined constraints to avoid paths that can't lead to a solution.
+    - For the 8-bit puzzle, the solution is known, and the game is to reach the solution in the least number of moves.
+    - For the Sudoku, the goal is to find the solution, which is not known at the start. Therefore it's difficult to model a heuristic.
+    - For other problems, there might not even be a solution, but you want to come as close to it as possible. These problems are also more easily modelled as a CSP.
     
     GLÖM EJ SKICKA MED EXCEL NÄR VI LÄMNAR IN
     https://docs.google.com/spreadsheets/d/1-1yhIVNnvja8yqtOQdbk4C01CidZxNnHUFFzzfDOIIs/edit?usp=sharing
