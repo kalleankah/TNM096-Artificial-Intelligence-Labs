@@ -1,5 +1,7 @@
 package lab3;
 import java.util.Set;
+import java.util.*;
+import java.util.HashSet;
 import java.util.Random;
 
 /**
@@ -8,7 +10,9 @@ import java.util.Random;
 
 public final class Lab3{
 
-  public static Clause resolution(Clause c1 ,Clause c2){
+  public static Clause resolution(Clause inC1 ,Clause inC2){
+    Clause c1 = new Clause(inC1);
+    Clause c2 = new Clause(inC2);
     Set<String> i1 = Clause.intersection(c1.p,c2.n);
     Set<String> i2 = Clause.intersection(c1.n,c2.p);
 
@@ -43,6 +47,80 @@ public final class Lab3{
     return u;
   }
 
+  public static void solver(Set<Clause> kb){
+    Set<Clause> s;
+    Set<Clause> kbCopy  = new HashSet<>();
+    
+    while(!kb.equals(kbCopy)){
+      s = new HashSet<>();
+      kbCopy = new HashSet<>(kb);
+
+
+      for(Clause c1 : kb){
+        for(Clause c2 : kb){
+          if(!c1.equals(c2)){
+            Clause c3 = resolution(c1,c2);
+            if(c3 != null){
+              // System.out.print("Resolvent found: ");
+              // c3.print();
+              s.add(c3);
+            }
+          }
+        }
+      }
+
+    if(s.isEmpty()){
+        // No resolution step was performed
+        System.out.println("S is empty");
+        return;
+      }
+      
+      System.out.println("S:");
+      printSet(kb);
+      //Incorporate S into KB
+      incorporate(s, kb);
+      System.out.println("KB:");
+      printSet(kb);
+    }
+  }
+
+  public static void printSet(Set<Clause> s){
+    for(Clause c : s){
+      c.print();
+    }
+  }
+
+  public static void incorporate(Set<Clause> s, Set<Clause> kb){
+    for(Clause c : s){
+      incorporateClause(c, kb);
+    }
+  }
+  
+  public static void incorporateClause(Clause a, Set<Clause> kb){
+    // Todo: -------------------------------------
+    // THE CODE BREAKS THE PROGRAM EVEN THOUGH
+    // THE INSTRUCTIONS SAY WE SHOULD HAVE THIS
+    // IF THIS IS IN THE LAST S DOESNT DO ANYTHING
+
+    // for(Clause b : kb){
+    //   if(b.isSubsetOrEqual(a)){
+    //     return;
+    //   }
+    // }
+
+    // ------------------------------------------
+    
+    Iterator<Clause> iter = kb.iterator();
+    while(iter.hasNext()){
+      Clause b = iter.next();
+      if(a.isSubset(b)){
+        iter.remove();
+      }
+    }
+
+    kb.add(a);
+  }
+
   //Default launch
   public static void main(String[] args){
     // __________________TASK A.1____________
@@ -53,14 +131,16 @@ public final class Lab3{
     // String Test2B = "d b -g";
     // String Test3A = "-b c t";
     // String Test3B = "-c z b";
+    // String TestSolveA = "-movie money";
+    // String TestSolveB = "-movie -ice";
 
-    // Clause c1 = new Clause(Test1A);
-    // Clause c2 = new Clause(Test1B);
+    // Clause c1 = new Clause(TestSolveA);
+    // Clause c2 = new Clause(TestSolveB);
     // Clause c3 = resolution(c1,c2);
     
     // c1.print("C1");
     // c2.print("C2");
-
+    
     // if (c3 != null){
     //   c3.print("C3");
     // }
@@ -69,7 +149,27 @@ public final class Lab3{
     // }
 
     //____________________TASK A.2__________________
+
+    String A = "-sun -money ice";
+    String B = "-money ice movie";
+    String C = "-movie money";
+    String D = "-movie -ice";
+    String E = "movie";
     
+    Set<Clause> KB = new HashSet<>();
+    KB.add(new Clause(A));
+    KB.add(new Clause(B));
+    KB.add(new Clause(C));
+    KB.add(new Clause(D));
+    KB.add(new Clause(E));   
+    
+    // System.out.println("Initial KB:");
+    // printSet(KB)
+
+    solver(KB);
+
+    System.out.println("Solved KB:");
+    printSet(KB);
     
   } // Main
 

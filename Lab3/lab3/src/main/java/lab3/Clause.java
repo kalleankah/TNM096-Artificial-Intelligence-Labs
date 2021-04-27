@@ -1,8 +1,8 @@
 package lab3;
 import java.util.Set;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import java.util.HashSet;
 import java.util.Arrays;
-
 
 /**
  * Clause Definition
@@ -29,9 +29,37 @@ public class Clause {
       }
     });
   }
-  
+
   public Clause(){
     
+  }
+
+  public Clause(Clause c){
+    this.p = new HashSet<>(c.p);
+    this.n = new HashSet<>(c.n);
+  }
+
+  void print(){
+    for(String symbol : p){
+      System.out.print(symbol + " ");
+    }
+
+    for(String symbol : n){
+      System.out.print("-" + symbol + " ");
+    }
+
+    System.out.println("");
+  }
+
+  // void print(){
+  //   System.out.println(" p = " + p.toString());
+  //   System.out.println(" n = " + n.toString());
+  // }
+
+  void print(String prefix){
+    System.out.println(prefix + " = ");
+    System.out.println(" p = " + p.toString());
+    System.out.println(" n = " + n.toString());
   }
 
   public static Set<String> intersection(Set<String> s1, Set<String> s2){
@@ -52,14 +80,34 @@ public class Clause {
     return new HashSet<>(Arrays.asList(string.split(" ")));
   }
 
-  void print(){
-    System.out.println(" p = " + p.toString());
-    System.out.println(" n = " + n.toString());
+  public boolean isSubsetOrEqual(Clause a) {
+    return a.p.containsAll(this.p) && a.n.containsAll(this.n);
   }
 
-  void print(String prefix){
-    System.out.println(prefix + " = ");
-    System.out.println(" p = " + p.toString());
-    System.out.println(" n = " + n.toString());
+  public boolean isSubset(Clause a) {
+    // return a.p.containsAll(this.p) && a.n.containsAll(this.n) && !(a.p.equals(this.p) && a.n.equals(this.n));
+    return a.p.containsAll(this.p) && a.n.containsAll(this.n) && !a.equals(this);
+  }
+
+  @Override
+  public boolean equals(Object obj){
+    if (obj == null) {
+      return false;
+    }
+
+    if (!Clause.class.isAssignableFrom(obj.getClass())) {
+        return false;
+    }
+
+    Clause other = (Clause)obj;
+    return other.p.equals(p) && other.n.equals(n);
+  }
+
+  @Override
+  public int hashCode() {
+    return new HashCodeBuilder(17, 37)
+            .append(p)
+            .append(n)
+            .toHashCode();
   }
 }
