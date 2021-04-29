@@ -51,16 +51,21 @@ public class Clause {
     System.out.println("");
   }
 
+  void print(String prefix){
+    System.out.print(prefix);
+    this.print();
+  }
+
   // void print(){
   //   System.out.println(" p = " + p.toString());
   //   System.out.println(" n = " + n.toString());
   // }
 
-  void print(String prefix){
-    System.out.println(prefix + " = ");
-    System.out.println(" p = " + p.toString());
-    System.out.println(" n = " + n.toString());
-  }
+  // void print(String prefix){
+  //   System.out.println(prefix + " = ");
+  //   System.out.println(" p = " + p.toString());
+  //   System.out.println(" n = " + n.toString());
+  // }
 
   public static Set<String> intersection(Set<String> s1, Set<String> s2){
     Set<String> c = new HashSet<>(s1);

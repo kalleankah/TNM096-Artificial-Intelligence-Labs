@@ -75,12 +75,12 @@ public final class Lab3{
         return;
       }
       
-      System.out.println("S:");
-      printSet(kb);
+      // System.out.println("S:");
+      // printSet(kb);
       //Incorporate S into KB
       incorporate(s, kb);
-      System.out.println("KB:");
-      printSet(kb);
+      // System.out.println("KB:");
+      // printSet(kb);
     }
   }
 
@@ -97,28 +97,36 @@ public final class Lab3{
   }
   
   public static void incorporateClause(Clause a, Set<Clause> kb){
-    // Todo: -------------------------------------
-    // THE CODE BREAKS THE PROGRAM EVEN THOUGH
-    // THE INSTRUCTIONS SAY WE SHOULD HAVE THIS
-    // IF THIS IS IN THE LAST S DOESNT DO ANYTHING
-
-    // for(Clause b : kb){
+        // for(Clause b : kb){
+    //   //b = movie ice -money
+    //   //a = movie
     //   if(b.isSubsetOrEqual(a)){
+    //     // Don't incorporate a into KB if there is already
+    //     // a clause b which is a subset of a.
     //     return;
     //   }
     // }
-
-    // ------------------------------------------
     
+    boolean willAddA = true;
+    boolean hasToAddA = false;
     Iterator<Clause> iter = kb.iterator();
     while(iter.hasNext()){
       Clause b = iter.next();
+      if(b.isSubsetOrEqual(a)){
+        willAddA = false;
+      }
+
       if(a.isSubset(b)){
         iter.remove();
+        hasToAddA = true;
       }
     }
-
-    kb.add(a);
+    
+    // We need to add a if we have removed something from kb
+    // because a was a subset of another clause in kb 
+    if(willAddA || hasToAddA){
+      kb.add(a);
+    }
   }
 
   //Default launch
@@ -150,27 +158,43 @@ public final class Lab3{
 
     //____________________TASK A.2__________________
 
-    String A = "-sun -money ice";
-    String B = "-money ice movie";
-    String C = "-movie money";
-    String D = "-movie -ice";
-    String E = "movie";
+    // String A = "-sun -money ice";
+    // String B = "-money ice movie";
+    // String C = "-movie money";
+    // String D = "-movie -ice";
+    // String E = "movie";
     
+    // Set<Clause> KB = new HashSet<>();
+    // KB.add(new Clause(A));
+    // KB.add(new Clause(E));
+    // KB.add(new Clause(C));
+    // KB.add(new Clause(D));
+    // KB.add(new Clause(B));   
+    
+    // // System.out.println("Initial KB:");
+    // // printSet(KB)
+
+    // solver(KB);
+
+    // System.out.println("Solved KB:");
+    // printSet(KB);
+
+    //____________________TASK B__________________
+
     Set<Clause> KB = new HashSet<>();
-    KB.add(new Clause(A));
-    KB.add(new Clause(B));
-    KB.add(new Clause(C));
-    KB.add(new Clause(D));
-    KB.add(new Clause(E));   
-    
-    // System.out.println("Initial KB:");
-    // printSet(KB)
+    // Nobody else could have been involved other than A, B and C
+    KB.add(new Clause("A B C"));
+    // C never commits a crime without A’s participation.
+    KB.add(new Clause("C -C"));
+    KB.add(new Clause("-C A"));
+    //B does not know how to drive
+    KB.add(new Clause("-B B"));
+    KB.add(new Clause("-B A C"));
 
     solver(KB);
 
-    System.out.println("Solved KB:");
     printSet(KB);
-    
+       
   } // Main
 
 } // Lab3 Class
