@@ -1,1 +1,18 @@
-
+%If shakey goes from one room to another
+%Preconditions: Shakey must not be in same room as the one he wants to move to,
+%               Room shakey is in must be connected to the one he wants to move to
+Action(
+  Go (p: Shakey, from: Position, to: Position)
+  PreconditionIsAtFromPosition: At(p, from)
+  PreconditionNotAlreadyThere: \+ At(p, to)
+  PreconditionConnected: 
+  Effect: \+ At(p, from) ^ At(p, to)
+)
+%If shakey goes to "item" in room
+%Precondition: Shakey must be in the same room as the "item" he wants to move to
+%                He must 
+Action(
+  Go (p: Shakey, from: Position, to: Position)
+  Precondition: At(p, from)
+  Effect: \+
+)

@@ -188,8 +188,10 @@ public final class Lab3{
     KB.add(new Clause("C -C"));
     KB.add(new Clause("-C A"));
     //B does not know how to drive
+    // interpretation: B only did it with either A or C or both
     KB.add(new Clause("-B B"));
-    KB.add(new Clause("-B A C"));
+    KB.add(new Clause("-B A"));
+    KB.add(new Clause("-B C"));
 
     solver(KB);
 
