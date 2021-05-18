@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BIF VERSION="0.3"  xmlns="http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3 http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3/XMLBIFv0_3.xsd">
+<NETWORK>
+<NAME>Untitled</NAME>
+<PROPERTY>detailed = </PROPERTY>
+<PROPERTY>short = </PROPERTY>
+
+<VARIABLE TYPE="nature">
+	<NAME>smart</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7280.818359375, 4981.81787109375)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>study</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7601.39013671875, 4981.81787109375)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>prepared</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7463.62353515625, 5159.32373046875)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>pass</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7349.70166015625, 5334.181640625)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>fair</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7633.18212890625, 5244.103515625)</PROPERTY>
+</VARIABLE>
+
+<DEFINITION>
+	<FOR>smart</FOR>
+	<TABLE>0.8 0.2</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>study</FOR>
+	<TABLE>0.6 0.4</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>prepared</FOR>
+	<GIVEN>smart</GIVEN>
+	<GIVEN>study</GIVEN>
+	<TABLE>0.9 0.1 0.5 0.5 0.7 0.3 0.1 0.9</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>pass</FOR>
+	<GIVEN>smart</GIVEN>
+	<GIVEN>prepared</GIVEN>
+	<GIVEN>fair</GIVEN>
+	<TABLE>0.9 0.1 0.1 0.9 0.7 0.3 0.1 0.9 0.7 0.3 0.1 0.9 0.2 0.8 0.1 0.9</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>fair</FOR>
+	<TABLE>0.9 0.1</TABLE>
+</DEFINITION>
+</NETWORK>
+</BIF>
