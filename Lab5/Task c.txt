@@ -1,0 +1,7 @@
+Lab 5 Task C
+A)
+    2.
+        - mary has flu, brob of fever = 0.63 (0.73 if both fever and strong fever)
+        - mary has disease, prob fever = 0.08 (1.0 if both fever and strongFever)
+B)
+    1. 

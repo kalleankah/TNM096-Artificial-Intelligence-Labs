@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BIF VERSION="0.3"  xmlns="http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3 http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3/XMLBIFv0_3.xsd">
+<NETWORK>
+<NAME>Untitled</NAME>
+<PROPERTY>detailed = </PROPERTY>
+<PROPERTY>short = </PROPERTY>
+
+<VARIABLE TYPE="nature">
+	<NAME>Flu</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7228.0, 5058.0)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Disease</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7329.0, 5094.0)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Fever</NAME>
+	<OUTCOME>noFever</OUTCOME>
+	<OUTCOME>Fever</OUTCOME>
+	<OUTCOME>strongFever</OUTCOME>
+	<PROPERTY>position = (7131.0, 5083.0)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Therm</NAME>
+	<OUTCOME>noFever</OUTCOME>
+	<OUTCOME>Fever</OUTCOME>
+	<OUTCOME>strongFever</OUTCOME>
+	<PROPERTY>position = (7134.0, 5146.0)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>FeverLater</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7226.0, 5260.0)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Reaction</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7339.0, 5247.0)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="decision">
+	<NAME>Action</NAME>
+	<OUTCOME>rest</OUTCOME>
+	<OUTCOME>aspirin</OUTCOME>
+	<OUTCOME>medication</OUTCOME>
+	<PROPERTY>position = (7132.0, 5222.0)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="utility">
+	<NAME>U</NAME>
+	<PROPERTY>position = (7287.0, 5368.0)</PROPERTY>
+</VARIABLE>
+
+<DEFINITION>
+	<FOR>Flu</FOR>
+	<TABLE>0.2 0.8</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Disease</FOR>
+	<TABLE>0.1 0.9</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Fever</FOR>
+	<GIVEN>Flu</GIVEN>
+	<GIVEN>Disease</GIVEN>
+	<TABLE>0.0 0.0 1.0 0.3 0.7 0.0 0.0 0.1 0.9 1.0 0.0 0.0</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Therm</FOR>
+	<GIVEN>Fever</GIVEN>
+	<TABLE>1.0 0.0 0.0 0.1 0.9 0.0 0.0 0.1 0.9</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>FeverLater</FOR>
+	<GIVEN>Flu</GIVEN>
+	<GIVEN>Disease</GIVEN>
+	<GIVEN>Action</GIVEN>
+	<TABLE>1.0 0.0 1.0 0.0 0.6 0.4 0.5 0.5 0.1 0.9 0.0 1.0 1.0 0.0 0.9 0.1 0.1 0.9 0.0 1.0 0.0 1.0 0.0 1.0</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Reaction</FOR>
+	<GIVEN>Fever</GIVEN>
+	<GIVEN>Action</GIVEN>
+	<TABLE>0.0 1.0 0.05 0.95 0.2 0.8 0.0 1.0 0.05 0.95 0.2 0.8 0.0 1.0 0.1 0.9 0.4 0.6</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Action</FOR>
+	<GIVEN>Therm</GIVEN>
+	<TABLE>1 1 2</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>U</FOR>
+	<GIVEN>FeverLater</GIVEN>
+	<GIVEN>Reaction</GIVEN>
+	<TABLE>-20.0 -10.0 -15.0 20.0</TABLE>
+</DEFINITION>
+</NETWORK>
+</BIF>
